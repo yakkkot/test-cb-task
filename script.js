@@ -64,7 +64,7 @@ function buttonClick() {
             });
     }
     catch (e){
-        alert(e);
+        window.alert(e);
     }
 }
 
