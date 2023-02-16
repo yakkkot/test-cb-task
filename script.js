@@ -9,24 +9,25 @@ mainBlock.appendChild(button);
 
 const ref = document.createElement("a");
 ref.href = 'https://docs.google.com/spreadsheets/d/1hGyZbLlrAbVbWfe4yHd2tUM8f3e16D_iFqhYKBpW0Ls/edit#gid=0';
+ref.target = '_blank';
 ref.classList.add("ref");
 ref.innerText = "Open Google Spreadsheet";
 mainBlock.appendChild(ref);
 
 button.addEventListener("click", buttonClick);
 
-function buttonClick() {
+async function buttonClick() {
     try {
         const allRows = Array.from(document.querySelectorAll("grid-row"));
         const columnHeaders = Array.from(document.querySelectorAll("grid-column-header"));
 
         if (allRows.length === 0 || columnHeaders.length === 0) {
-            window.alert('The page does not have a table.');
+            throw new Error('The page does not have a table.');
         }
 
         const res = [];
 
-        const headers = columnHeaders.reduce((acc, value,index) => {
+        const headers = columnHeaders.reduce((acc, value, index) => {
             const i = index.toString();
             if (value.textContent.trim() && (value.textContent.trim() !== 'Add Column')) {
                 acc[i] = value.textContent;
@@ -37,9 +38,9 @@ function buttonClick() {
         res.push(headers);
 
         allRows.forEach(row => {
-            const resultFromRow= Array.from(row.childNodes).reduce((acc, value,index) => {
+            const resultFromRow = Array.from(row.childNodes).reduce((acc, value, index) => {
                 const i = index.toString();
-                if(value.textContent.trim()) {
+                if (value.textContent.trim()) {
                     acc[i] = value.textContent;
                 }
                 return acc;
@@ -47,7 +48,7 @@ function buttonClick() {
             res.push(resultFromRow);
         });
 
-        fetch("https://sheet.best/api/sheets/b6b47b3c-c01f-4f7b-a3f9-2ad49ff7dd2f", {
+        const data = await fetch("https://sheet.best/api/sheets/b6b47b3c-c01f-4f7b-a3f9-2ad49ff7dd2f", {
             method: "POST",
             mode: "cors",
             headers: {
@@ -55,15 +56,11 @@ function buttonClick() {
             },
             body: JSON.stringify(res),
         })
-            .then((r) => r.json())
-            .then((data) => {
-                console.log(data);
-            })
-            .catch((error) => {
-                window.alert(JSON.stringify(error));
-            });
+        const dataJSON = await data.json()
+        console.log(dataJSON);
     }
     catch (e){
+        console.log(e);
         window.alert(e);
     }
 }
