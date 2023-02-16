@@ -21,7 +21,7 @@ function buttonClick() {
         const columnHeaders = Array.from(document.querySelectorAll("grid-column-header"));
 
         if (allRows.length === 0 || columnHeaders.length === 0) {
-            throw new Error('The page does not have a table.');
+            window.alert('The page does not have a table.');
         }
 
         const res = [];
@@ -60,11 +60,10 @@ function buttonClick() {
                 console.log(data);
             })
             .catch((error) => {
-                throw new Error(JSON.stringify(error));
+                window.alert(JSON.stringify(error));
             });
     }
     catch (e){
-        console.log('catch ERROR', e)
         window.alert(e);
     }
 }
