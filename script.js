@@ -60,10 +60,11 @@ function buttonClick() {
                 console.log(data);
             })
             .catch((error) => {
-                throw new Error(error);
+                throw new Error(JSON.stringify(error));
             });
     }
     catch (e){
+        console.log('catch ERROR', e)
         window.alert(e);
     }
 }
