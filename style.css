@@ -1,0 +1,45 @@
+.block {
+    position: fixed;
+    top: 0px;
+    right: 0;
+    z-index: 100;
+    height: 200px;
+    border-radius: 10px;
+    background: rgb(81, 81, 245);
+    border: 1px solid silver;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 5px;
+
+    font-size: 18px;
+}
+
+.button {
+    padding: 5px 10px;
+    background: #0f0688;
+    color: #ffffff;
+    transition: all 0.3s;
+    border-radius: 5px;
+    border: 1px solid #040123;
+}
+
+.button:hover {
+    background: #0a0360;
+}
+
+.ref {
+    padding: 5px 10px;
+    background: #104f30;
+    color: #ffffff;
+    transition: all 0.3s;
+    border-radius: 5px;
+    border: 1px solid #032514;
+}
+
+.ref:hover {
+    background: #052c1a;
+}

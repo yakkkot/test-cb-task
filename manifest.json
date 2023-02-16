@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Copy from Crunchbase to Google Spreadsheet",
+  "version": "1.0.0",
+  "content_scripts": [
+    {
+      "matches": ["https://www.crunchbase.com/*"],
+      "js": ["script.js"],
+      "css": ["style.css"]
+    }
+  ]
+}
